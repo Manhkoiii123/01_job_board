@@ -3,6 +3,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -10,6 +11,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
+import { SignedOut } from "@/services/clerk/components/SignInStatus";
+import { LogInIcon } from "lucide-react";
+import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -20,11 +26,30 @@ export default function Home() {
             <SidebarTrigger />
             <span className="text-xl text-nowrap">ManhJobs</span>
           </SidebarHeader>
-          <SidebarContent></SidebarContent>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarMenu>
+                <Suspense>
+                  <SignedOut>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <Link href="/sign-in">
+                          <LogInIcon />
+                          <span>Login</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SignedOut>
+                </Suspense>
+              </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
           <SidebarFooter>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>sdsds</SidebarMenuButton>
+                <SidebarMenuButton>
+                  <SidebarUserButton />
+                </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
