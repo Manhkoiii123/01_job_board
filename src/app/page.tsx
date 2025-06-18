@@ -12,7 +12,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { SidebarUserButton } from "@/features/users/components/SidebarUserButton";
-import { SignedOut } from "@/services/clerk/components/SignInStatus";
+import { SignedIn, SignedOut } from "@/services/clerk/components/SignInStatus";
 import { LogInIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -44,15 +44,17 @@ export default function Home() {
               </SidebarMenu>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarFooter>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <SidebarUserButton />
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarFooter>
+          <SignedIn>
+            <SidebarFooter>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton>
+                    <SidebarUserButton />
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarFooter>
+          </SignedIn>
         </Sidebar>
 
         <main className="flex-1 ">aaaaaaaaaa</main>
